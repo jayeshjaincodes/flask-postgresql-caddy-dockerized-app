@@ -1,28 +1,89 @@
-# Project name
+# 🚀 Dockerized Flask + PostgreSQL + Caddy App
 
-Short description here.
+A containerized backend setup using:
 
-## Components
+* Flask (API backend)
+* PostgreSQL (database)
+* Caddy (reverse proxy)
+* Adminer (DB UI)
 
-Name | Purpose
----|---
-Python | Flask app
-Postgres | Database
-Caddy | SSL with LetsEncrypt
-Adminer | Database admin (only for development)
+---
 
-## Usage
-- Install [Debian 11](https://www.debian.org/releases/stable/)
-- Install [Docker](https://docs.docker.com/engine/install/debian/#install-using-the-repository) and Git from repositories
-- Clone this repository.
-- Copy `.env-example` to `.env` and fill in
+# ⚙️ Setup Instructions
 
-## Run
-### Development
+## 1. Clone the repository
+
+```bash
+git clone 
+cd <repo-folder>
 ```
-docker-compose -f docker-compose.yml -f docker-compose-development.yml up
+
+---
+
+## 2. Configure Environment Variables
+
+Create a `.env` file in the root:
+
+```env
+# Python & Image Versions
+PYTHON_IMAGE_VERSION=3.10
+POSTGRES_IMAGE_VERSION=14
+CADDY_IMAGE_VERSION=2.5.1
+
+# Database Config
+POSTGRES_HOSTNAME=postgres
+POSTGRES_DATABASE=db
+POSTGRES_USERNAME=admin
+POSTGRES_PASSWORD=password
 ```
-### Production with HTTPS/SSL by LetsEncrypt
+
+---
+
+# 🌐 Caddy Configuration
+
+### Default (Local Development)
+
+```caddy
+localhost {
+    reverse_proxy app:8000
+}
 ```
-docker-compose -f docker-compose.yml -f docker-compose-ssl.yml up
+
+---
+
+### If using a real domain
+
+Replace `localhost` with your domain:
+
+```caddy
+yourdomain.com {
+    reverse_proxy app:8000
+}
 ```
+
+---
+
+# 🐳 Run the Application
+
+To run the project:
+
+```bash
+docker compose up --build
+```
+
+# 🐳 Stop the Application
+
+To stop the project:
+
+```bash
+docker compose down
+```
+
+---
+
+# 🌍 Access the Services
+
+* App: [http://localhost](http://localhost)
+* Direct Flask: [http://localhost:8000](http://localhost:8000)
+* Adminer: [http://localhost:8080](http://localhost:8080)
+
