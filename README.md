@@ -14,9 +14,8 @@ A containerized backend setup using:
 ## 1. Clone the repository
 
 ```bash
-git clone 
-cd <repo-folder>
-```
+git clone https://github.com/jayeshjaincodes/flask-postgresql-caddy-dockerized-app.git
+cd flask-postgresql-caddy-dockerized-app
 
 ---
 
